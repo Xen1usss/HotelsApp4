@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ks.hotelsapp.R
 import ks.hotelsapp.domain.Hotel
+import ks.hotelsapp.domain.HotelsAdapter
 
 class ListOfHotelsFragment : Fragment() {
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,19 +32,12 @@ class ListOfHotelsFragment : Fragment() {
             Hotel("Отель 1", 4.5f, 10, "500 м"),
             Hotel("Отель 2", 3.8f, 5, "1 км"),
             Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 1", 4.5f, 10, "500 м"),
-            Hotel("Отель 2", 3.8f, 5, "1 км"),
             Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 1", 4.5f, 10, "500 м"),
-            Hotel("Отель 2", 3.8f, 5, "1 км"),
             Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 1", 4.5f, 10, "500 м"),
-            Hotel("Отель 2", 3.8f, 5, "1 км"),
             Hotel("Отель 3", 5.0f, 2, "200 м"),
-
         )
 
-        val adapter = HotelAdapter(testData)
+        val adapter = HotelsAdapter(testData)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

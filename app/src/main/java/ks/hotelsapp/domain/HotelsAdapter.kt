@@ -1,4 +1,4 @@
-package ks.hotelsapp.presentation
+package ks.hotelsapp.domain
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ks.hotelsapp.R
-import ks.hotelsapp.domain.Hotel
 
-class HotelAdapter(private val items: List<Hotel>) :
-    RecyclerView.Adapter<HotelAdapter.HotelViewHolder>() {
+class HotelsAdapter(private val items: List<Hotel>) :
+    RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
 
     class HotelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.name)
