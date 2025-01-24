@@ -29,12 +29,13 @@ class ListOfHotelsFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.rcView)
         val testData = listOf(
-            Hotel("Отель 1", 4.5f, 10, "500 м"),
-            Hotel("Отель 2", 3.8f, 5, "1 км"),
-            Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 3", 5.0f, 2, "200 м"),
-            Hotel("Отель 3", 5.0f, 2, "200 м"),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+            Hotel(123, "Отель" , "Broadway, 10", 4.75f,"500 м", 3),
+
         )
 
         val adapter = HotelsAdapter(testData)

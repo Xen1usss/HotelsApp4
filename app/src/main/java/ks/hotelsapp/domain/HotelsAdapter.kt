@@ -27,7 +27,7 @@ class HotelsAdapter(private val items: List<Hotel>) :
     override fun onBindViewHolder(holder: HotelViewHolder, position: Int) {
         val item = items[position]
         holder.name.text = item.name
-        holder.rating.rating = item.rating
+        holder.rating.rating = item.stars
         holder.available.text = "Свободные номера: ${item.availableRooms}"
         holder.distance.text = "Расстояние от центра: ${item.distance}"
     }
