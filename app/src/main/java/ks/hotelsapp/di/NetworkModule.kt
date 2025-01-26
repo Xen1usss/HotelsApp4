@@ -5,6 +5,8 @@ import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.InstallIn
 import ks.hotelsapp.data.HotelsApi
+import ks.hotelsapp.data.HotelsRepositoryImpl
+import ks.hotelsapp.domain.HotelsRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -42,5 +44,11 @@ object NetworkModule {
     @Singleton
     fun provideHotelsApi(retrofit: Retrofit): HotelsApi {
         return retrofit.create(HotelsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHotelsRepository(hotelsRepositoryImpl: HotelsRepositoryImpl): HotelsRepository {
+        return hotelsRepositoryImpl
     }
 }

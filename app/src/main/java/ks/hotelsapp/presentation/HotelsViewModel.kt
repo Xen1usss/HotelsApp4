@@ -8,11 +8,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ks.hotelsapp.domain.GetHotelsUseCase
 import ks.hotelsapp.domain.Hotel
 import kotlinx.coroutines.launch
+import ks.hotelsapp.data.HotelsRepositoryImpl
 import javax.inject.Inject
 
 @HiltViewModel
 class HotelsViewModel @Inject constructor(
-    private val getHotelsUseCase: GetHotelsUseCase
+    // private val repository: HotelsRepositoryImpl,
+    private val getHotelsUseCase: GetHotelsUseCase// getHotelsUseCase: GetHotelsUseCase
 ) : ViewModel() {
 
     private val _hotels = MutableLiveData<List<Hotel>>()
