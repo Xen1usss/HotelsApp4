@@ -19,12 +19,3 @@ class HotelsRepositoryImpl @Inject constructor(
         }
     }
 }
-
-
-
-
-//    override suspend fun getHotels(): List<Hotel> {
-//        val hotels = hotelsApi.getHotels().map { it.toDomainModel() }
-//        //Log.d("HotelsRepository", "Fetched hotels: $hotels")
-//        return hotels
-//    }

@@ -31,16 +31,4 @@ fun HotelDto.toDomainModel(): Hotel {
         suitesAvailability = this.suites_availability
     )
 }
-//{
-//    fun toDomainModel(): Hotel {
-//        val availableRoomsCount = suites_availability.split(":").size
-//        return Hotel(
-//            id = id,
-//            name = name,
-//            address = address,
-//            stars = stars,
-//            distance = distance,
-//            availableRooms = "$availableRoomsCount"
-//        )
-//    }
-//}
+
