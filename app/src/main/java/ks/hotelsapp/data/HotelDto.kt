@@ -22,13 +22,18 @@ data class HotelDto(
 )
 
 fun HotelDto.toDomainModel(): Hotel {
+    val availableSuitesCount = suites_availability
+        .split(":")
+        .filter { it.isNotEmpty() } // нужно, чтобы строки по типу "1:" не считывались, как 2 номера, вместо 1
+        .size
+
     return Hotel(
         id = this.id,
         name = this.name,
         address = this.address,
         stars = this.stars,
         distance = this.distance,
-        suitesAvailability = this.suites_availability
+        availableSuitesCount = availableSuitesCount // Присваиваем количество
     )
 }
 
