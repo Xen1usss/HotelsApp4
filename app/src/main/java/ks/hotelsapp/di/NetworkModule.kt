@@ -1,5 +1,7 @@
 package ks.hotelsapp.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -27,6 +29,14 @@ object NetworkModule {
         }
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory()) // Добавляем поддержку Kotlin
             .build()
     }
 

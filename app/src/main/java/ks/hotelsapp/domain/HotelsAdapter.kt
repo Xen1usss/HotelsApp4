@@ -28,7 +28,7 @@ class HotelsAdapter(private val items: List<Hotel>) :
         val item = items[position]
         holder.name.text = item.name
         holder.rating.rating = item.stars
-        holder.available.text = "Свободные номера: ${item.availableRooms}"
+        holder.available.text = "Свободные номера: ${item.suitesAvailability}"
         holder.distance.text = "Расстояние от центра: ${item.distance}"
     }
 
