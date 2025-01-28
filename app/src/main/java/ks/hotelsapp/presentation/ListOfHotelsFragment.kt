@@ -1,16 +1,3 @@
-//package ks.hotelsapp.presentation
-//
-//import android.os.Bundle
-//import androidx.fragment.app.Fragment
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.recyclerview.widget.RecyclerView
-//import ks.hotelsapp.R
-//import ks.hotelsapp.domain.Hotel
-//import ks.hotelsapp.domain.HotelsAdapter
-
 package ks.hotelsapp.presentation
 
 import android.os.Bundle
@@ -23,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import ks.hotelsapp.R
-import ks.hotelsapp.domain.Hotel
 import ks.hotelsapp.domain.HotelsAdapter
 
 @AndroidEntryPoint
@@ -51,4 +37,3 @@ class ListOfHotelsFragment : Fragment() {
         viewModel.loadHotels()
     }
 }
-
