@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ks.hotelsapp.domain.GetHotelsUseCase
 import ks.hotelsapp.domain.Hotel
 import kotlinx.coroutines.launch
-import ks.hotelsapp.data.HotelsRepositoryImpl
 import javax.inject.Inject
 
 @HiltViewModel
