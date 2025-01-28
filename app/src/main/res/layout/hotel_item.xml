@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/avaliable"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginVertical="5dp"
@@ -54,7 +54,7 @@
         <TextView
             android:id="@+id/distance"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="369dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginVertical="5dp"
