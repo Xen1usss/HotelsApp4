@@ -6,6 +6,5 @@ data class Hotel(
     val address: String,
     val stars: Float,
     val distance: Float,
-    // val suitesAvailability: String
     val availableSuitesCount: Int
 )

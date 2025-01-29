@@ -71,6 +71,8 @@ dependencies {
     // implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0")
     kapt("androidx.hilt:hilt-compiler:1.0.0") // Hilt для ViewModel
     implementation("androidx.fragment:fragment-ktx:1.8.5")
+
+    implementation(libs.androidx.navigation.compose)
 }
 
 kapt {
