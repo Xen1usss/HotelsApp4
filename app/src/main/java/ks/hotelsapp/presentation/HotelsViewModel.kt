@@ -12,26 +12,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HotelsViewModel @Inject constructor(
-    // private val repository: HotelsRepositoryImpl,
+
     private val getHotelsUseCase: GetHotelsUseCase
 ) : ViewModel() {
 
     private val _hotels = MutableLiveData<List<Hotel>>()
     val hotels: LiveData<List<Hotel>> = _hotels
 
-    // LiveData для отслеживания состояния загрузки
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun loadHotels() {
-        _isLoading.value = true // Включаем индикатор загрузки
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 _hotels.value = getHotelsUseCase()
             } catch (e: Exception) {
                 // Handle error
             } finally {
-                _isLoading.value = false // Отключаем индикатор загрузки
+                _isLoading.value = false
             }
         }
     }

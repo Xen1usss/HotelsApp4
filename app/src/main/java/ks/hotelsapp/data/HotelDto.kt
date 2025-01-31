@@ -4,7 +4,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import ks.hotelsapp.domain.Hotel
 
-// Data Transfer Object model
 @JsonClass(generateAdapter = true)
 data class HotelDto(
     @Json(name = "id")
@@ -33,7 +32,6 @@ fun HotelDto.toDomainModel(): Hotel {
         address = this.address,
         stars = this.stars,
         distance = this.distance,
-        availableSuitesCount = availableSuitesCount // Присваиваем количество
+        availableSuitesCount = availableSuitesCount
     )
 }
-

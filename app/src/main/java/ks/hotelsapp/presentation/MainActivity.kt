@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar, menu)
         return true
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "You clicked option 2", Toast.LENGTH_LONG).show()
                 return true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -31,9 +31,9 @@ class ListOfHotelsFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.rcView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val progressBar: ProgressBar = view.findViewById(R.id.progressBar) // ProgressBar для загрузки
+        val progressBar: ProgressBar =
+            view.findViewById(R.id.progressBar)
 
-        // Наблюдаем за загрузкой
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
