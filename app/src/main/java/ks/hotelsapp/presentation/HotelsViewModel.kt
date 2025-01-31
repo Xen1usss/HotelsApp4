@@ -1,5 +1,6 @@
 package ks.hotelsapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,9 +27,9 @@ class HotelsViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                _hotels.value = getHotelsUseCase()
+                _hotels.postValue(getHotelsUseCase()) //_hotels.value = getHotelsUseCase()
             } catch (e: Exception) {
-                // Handle error
+                Log.e("HotelsViewModel", "Ошибка загрузки отелей", e)
             } finally {
                 _isLoading.value = false
             }
