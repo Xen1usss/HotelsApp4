@@ -10,29 +10,32 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import ks.hotelsapp.R
+import ks.hotelsapp.databinding.FragmentListOfHotelsBinding
 import ks.hotelsapp.domain.HotelsAdapter
 
 @AndroidEntryPoint
 class ListOfHotelsFragment : Fragment() {
 
     private val viewModel: HotelsViewModel by viewModels()
+    private var _binding: FragmentListOfHotelsBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_list_of_hotels, container, false)
+        _binding = FragmentListOfHotelsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.rcView)
+        val recyclerView: RecyclerView = binding.rcView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val progressBar: ProgressBar =
-            view.findViewById(R.id.progressBar)
+        val progressBar: ProgressBar = binding.progressBar
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -43,5 +46,10 @@ class ListOfHotelsFragment : Fragment() {
         }
 
         viewModel.loadHotels()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
