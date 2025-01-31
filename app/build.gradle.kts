@@ -42,6 +42,9 @@ android {
             excludes += "META-INF/DEPENDENCIES"
         }
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
