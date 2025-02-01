@@ -91,6 +91,8 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
+
+    implementation (libs.androidx.material3)
 }
 
 kapt {
