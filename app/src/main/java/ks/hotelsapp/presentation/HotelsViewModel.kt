@@ -27,7 +27,7 @@ class HotelsViewModel @Inject constructor(
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                _hotels.postValue(getHotelsUseCase()) //_hotels.value = getHotelsUseCase()
+                _hotels.postValue(getHotelsUseCase())
             } catch (e: Exception) {
                 Log.e("HotelsViewModel", "Ошибка загрузки отелей", e)
             } finally {

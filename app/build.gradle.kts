@@ -76,6 +76,19 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.5")
 
     implementation(libs.androidx.navigation.compose)
+
+
+    // Jetpack Compose (основные зависимости)
+    implementation ("androidx.activity:activity-compose:1.8.2")
+    implementation ("androidx.compose.ui:ui:1.6.0")
+    implementation ("androidx.compose.material:material:1.6.0")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.6.0")
+
+    // Для работы с Compose во фрагментах
+    implementation ("androidx.fragment:fragment-compose:1.6.2")
+
+    // Для отладки
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.6.0")
 }
 
 kapt {
