@@ -1,5 +1,6 @@
 package ks.hotelsapp.domain
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,10 @@ class HotelsAdapter(
     private val items: List<Hotel>,
     private val onItemClick: (Hotel) -> Unit) :
     RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
+
+        init {
+            Log.d("mistake", items.toString())
+        }
 
     class HotelViewHolder(private val binding: HotelItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

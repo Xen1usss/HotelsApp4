@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,10 +46,11 @@ class ListOfHotelsFragment : Fragment() {
         }
 
         viewModel.hotels.observe(viewLifecycleOwner) { hotels ->
-            recyclerView.adapter = HotelsAdapter(hotels,
+            val hotelsAdapter = HotelsAdapter(hotels,
                 onItemClick = { selectedHotel ->
                     onHotelClicked(selectedHotel) //onItemClick = ) // onItemClick = Unit
-        })
+                })
+            recyclerView.adapter = hotelsAdapter
         }
 
 //        viewModel.hotels.observe(viewLifecycleOwner) { hotels ->

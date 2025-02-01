@@ -30,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     packaging {
         resources {
@@ -49,7 +49,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
 }
 
@@ -84,13 +84,13 @@ dependencies {
 
     // Jetpack Compose (основные зависимости)
     implementation(libs.androidx.navigation.compose)
-    implementation ("androidx.activity:activity-compose:1.10.0")
-    implementation ("androidx.fragment:fragment-compose:1.8.5")
+    implementation (libs.androidx.activity.compose)
+    implementation (libs.androidx.fragment.compose)
 
-    implementation("androidx.compose.ui:ui:1.6.7")
-    implementation("androidx.compose.material:material:1.6.7")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.7")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.7")
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 }
 
 kapt {

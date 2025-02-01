@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ks.hotelsapp.R
 
@@ -23,11 +24,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.containerForFragments, ListOfHotelsFragment())
-                .commitNow()
-        }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.containerForFragments) as NavHostFragment
+        val navController = navHostFragment.navController
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

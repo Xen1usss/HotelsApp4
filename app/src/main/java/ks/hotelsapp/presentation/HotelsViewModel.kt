@@ -23,6 +23,10 @@ class HotelsViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
+    init {
+        loadHotels()
+    }
+
     fun loadHotels() {
         _isLoading.value = true
         viewModelScope.launch {

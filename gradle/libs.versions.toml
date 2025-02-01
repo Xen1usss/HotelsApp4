@@ -1,10 +1,11 @@
 [versions]
+activityCompose = "1.10.0"
 agp = "8.6.0"
 daggerCompiler = "2.44"
 fragmentKtx = "1.8.5"
 hiltAndroid = "2.51.1"
 hiltCompiler = "1.2.0"
-kotlin = "1.9.0"
+kotlin = "1.9.25"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,21 +16,29 @@ loggingInterceptor = "4.11.0"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
+materialVersion = "1.7.7"
 moshiKotlin = "1.14.0"
 navigationCompose = "2.8.5"
 recyclerview = "1.4.0"
 retrofit = "2.9.0"
 firebaseAppdistributionGradle = "5.1.0"
 navigationFragment = "2.8.6"
+ui = "1.7.7"
 
 [libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "fragmentKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "ui" }
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "daggerCompiler" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "daggerCompiler" }
@@ -51,4 +60,3 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
