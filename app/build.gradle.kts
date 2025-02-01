@@ -45,6 +45,12 @@ android {
     viewBinding {
         enable = true
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
+    }
 }
 
 dependencies {
@@ -55,6 +61,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.appdistribution.gradle)
+    implementation(libs.androidx.navigation.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,26 +76,21 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.recyclerview)
 
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
     // implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0")
-    kapt("androidx.hilt:hilt-compiler:1.0.0") // Hilt для ViewModel
-    implementation("androidx.fragment:fragment-ktx:1.8.5")
-
-    implementation(libs.androidx.navigation.compose)
-
+    kapt(libs.androidx.hilt.compiler) // Hilt для ViewModel
+    implementation(libs.androidx.fragment.ktx)
 
     // Jetpack Compose (основные зависимости)
-    implementation ("androidx.activity:activity-compose:1.8.2")
-    implementation ("androidx.compose.ui:ui:1.6.0")
-    implementation ("androidx.compose.material:material:1.6.0")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.6.0")
+    implementation(libs.androidx.navigation.compose)
+    implementation ("androidx.activity:activity-compose:1.10.0")
+    implementation ("androidx.fragment:fragment-compose:1.8.5")
 
-    // Для работы с Compose во фрагментах
-    implementation ("androidx.fragment:fragment-compose:1.6.2")
-
-    // Для отладки
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.6.0")
+    implementation("androidx.compose.ui:ui:1.6.7")
+    implementation("androidx.compose.material:material:1.6.7")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.6.7")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.6.7")
 }
 
 kapt {

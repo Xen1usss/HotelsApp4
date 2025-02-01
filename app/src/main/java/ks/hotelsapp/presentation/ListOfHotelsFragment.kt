@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import ks.hotelsapp.R
 import ks.hotelsapp.databinding.FragmentListOfHotelsBinding
+import ks.hotelsapp.domain.Hotel
 import ks.hotelsapp.domain.HotelsAdapter
 
 @AndroidEntryPoint
@@ -42,10 +45,31 @@ class ListOfHotelsFragment : Fragment() {
         }
 
         viewModel.hotels.observe(viewLifecycleOwner) { hotels ->
-            recyclerView.adapter = HotelsAdapter(hotels)
+            recyclerView.adapter = HotelsAdapter(hotels,
+                onItemClick = { selectedHotel ->
+                    onHotelClicked(selectedHotel) //onItemClick = ) // onItemClick = Unit
+        })
         }
 
-        viewModel.loadHotels()
+//        viewModel.hotels.observe(viewLifecycleOwner) { hotels ->
+//            recyclerView.adapter = HotelsAdapter(hotels) { selectedHotel ->
+//                onHotelClicked(selectedHotel) // Вызываем переход в ComposeFragment
+//            }
+//        }
+    }
+
+//    private fun onHotelClicked(hotel: Hotel) {
+//        // Переход в ComposeFragment при клике на отель
+//        val fragmentManager = parentFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//
+//        fragmentTransaction.replace(R.id.containerForFragments, HotelDetailsComposeFragment())
+//        fragmentTransaction.addToBackStack("ComposeFragment") // Добавляем в стек
+//        fragmentTransaction.commit()
+//    }
+
+    private fun onHotelClicked(hotel: Hotel) {
+        findNavController().navigate(R.id.action_listOfHotelsFragment_to_hotelDetailsComposeFragment)
     }
 
     override fun onDestroyView() {

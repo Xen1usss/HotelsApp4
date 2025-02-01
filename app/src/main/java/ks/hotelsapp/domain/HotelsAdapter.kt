@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ks.hotelsapp.databinding.HotelItemBinding
 
-class HotelsAdapter(private val items: List<Hotel>) :
+class HotelsAdapter(
+    private val items: List<Hotel>,
+    private val onItemClick: (Hotel) -> Unit) :
     RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
 
     class HotelViewHolder(private val binding: HotelItemBinding) :
@@ -26,6 +28,11 @@ class HotelsAdapter(private val items: List<Hotel>) :
     override fun onBindViewHolder(holder: HotelViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
+
+        // Устанавливаем обработчик клика
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemCount(): Int = items.size
