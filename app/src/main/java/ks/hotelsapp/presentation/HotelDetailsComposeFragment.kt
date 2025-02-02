@@ -20,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,15 +40,34 @@ import androidx.fragment.app.Fragment
 import ks.hotelsapp.R
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HotelDetailsComposeFragment : Fragment() {
+
+    private val viewModel: HotelDetailsViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        val hotelId = arguments?.getInt("hotelId") ?: -1
+        viewModel.loadHotel(hotelId)
+
         return ComposeView(requireContext()).apply {
             setContent {
-                ComposeScreen()
+                val hotel = viewModel.hotel.observeAsState().value
+                hotel?.let {
+                    ComposeScreen(
+                        hotelName = it.name,
+                        rating = "Рейтинг: ${it.stars}",
+                        distanceToCenter = "${it.distance}",
+                        address = it.address,
+                        freeRooms = "Свободные номера: ${it.availableSuitesCount}"
+                    )
+                } ?: Text("Отель не найден")
             }
         }
     }
