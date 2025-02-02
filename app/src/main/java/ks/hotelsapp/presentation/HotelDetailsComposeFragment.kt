@@ -10,10 +10,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
@@ -42,14 +45,16 @@ class HotelDetailsComposeFragment : Fragment() {
 @Composable
 fun ComposeScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
+        Box {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp) // или 16
+                .clip(RoundedCornerShape(15.dp)),
             painter = painterResource(R.drawable.test),
             contentDescription = null,
             contentScale = ContentScale.FillWidth
-        )
+        ) }
         Box(modifier = Modifier.fillMaxWidth()) {
             Text(
                 modifier = Modifier
