@@ -10,23 +10,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import ks.hotelsapp.R
+import androidx.compose.ui.graphics.Shape
 
 class HotelDetailsComposeFragment : Fragment() {
     override fun onCreateView(
@@ -41,20 +44,22 @@ class HotelDetailsComposeFragment : Fragment() {
     }
 }
 
-
 @Composable
 fun ComposeScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
-        Box {
+        // изображение отеля
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp) // или 16
-                .clip(RoundedCornerShape(15.dp)),
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                .clip(CustomShape()),
             painter = painterResource(R.drawable.test),
             contentDescription = null,
             contentScale = ContentScale.FillWidth
-        ) }
+        )
+
+        // контент карточки
+
         Box(modifier = Modifier.fillMaxWidth()) {
             Text(
                 modifier = Modifier
@@ -117,4 +122,30 @@ fun String.capitalizeWords(): String {
 @Composable
 fun Preview(modifier: Modifier = Modifier) {
     ComposeScreen()
+}
+
+class CustomShape : Shape {
+    override fun createOutline(
+        size: androidx.compose.ui.geometry.Size,
+        layoutDirection: androidx.compose.ui.unit.LayoutDirection,
+        density: Density
+    ): Outline {
+        val cropConstant = 1f * density.density
+        val cornerConstant = 12f * density.density
+        val path = androidx.compose.ui.graphics.Path().apply {
+            addRoundRect(
+                RoundRect(
+                    left = size.width - cropConstant,
+                    top = cropConstant,
+                    right = cropConstant,
+                    bottom = size.height - cropConstant,
+                    topLeftCornerRadius = CornerRadius(cornerConstant, cornerConstant),
+                    topRightCornerRadius = CornerRadius(cornerConstant, cornerConstant),
+                    bottomLeftCornerRadius = CornerRadius(cornerConstant, cornerConstant),
+                    bottomRightCornerRadius = CornerRadius(cornerConstant, cornerConstant)
+                )
+            )
+        }
+        return Outline.Generic(path = path)
+    }
 }
