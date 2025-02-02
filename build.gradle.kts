@@ -6,3 +6,11 @@ plugins {
 
     id ("com.android.library") version "7.4.1" apply false
 }
+
+buildscript {
+
+    dependencies {
+        val nav_version = "2.8.6"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}

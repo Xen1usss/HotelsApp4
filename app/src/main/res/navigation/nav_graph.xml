@@ -21,5 +21,8 @@
         <action
             android:id="@+id/action_hotelDetailsComposeFragment_to_listOfHotelsFragment"
             app:destination="@id/listOfHotelsFragment" />
+        <argument
+            android:name="hotelId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,24 +52,11 @@ class ListOfHotelsFragment : Fragment() {
             recyclerView.adapter = hotelsAdapter
         }
 
-//        viewModel.hotels.observe(viewLifecycleOwner) { hotels ->
-//            recyclerView.adapter = HotelsAdapter(hotels) { selectedHotel ->
-//                onHotelClicked(selectedHotel) // Вызываем переход в ComposeFragment
-//            }
-//        }
     }
 
-//    private fun onHotelClicked(hotel: Hotel) {
-//        // Переход в ComposeFragment при клике на отель
-//        val fragmentManager = parentFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//
-//        fragmentTransaction.replace(R.id.containerForFragments, HotelDetailsComposeFragment())
-//        fragmentTransaction.addToBackStack("ComposeFragment") // Добавляем в стек
-//        fragmentTransaction.commit()
-//    }
-
     private fun onHotelClicked(hotel: Hotel) {
+        val action = ListOfHotelsFragmentDirections
+            .actionListOfHotelsFragmentToHotelDetailsComposeFragment(hotel.id)
         findNavController().navigate(R.id.action_listOfHotelsFragment_to_hotelDetailsComposeFragment)
     }
 
