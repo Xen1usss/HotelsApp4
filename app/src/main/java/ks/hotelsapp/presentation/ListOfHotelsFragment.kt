@@ -57,7 +57,7 @@ class ListOfHotelsFragment : Fragment() {
     private fun onHotelClicked(hotel: Hotel) {
         val action = ListOfHotelsFragmentDirections
             .actionListOfHotelsFragmentToHotelDetailsComposeFragment(hotel.id)
-        findNavController().navigate(R.id.action_listOfHotelsFragment_to_hotelDetailsComposeFragment)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

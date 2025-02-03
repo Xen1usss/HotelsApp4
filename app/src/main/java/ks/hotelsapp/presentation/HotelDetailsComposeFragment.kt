@@ -65,7 +65,7 @@ class HotelDetailsComposeFragment : Fragment() {
                         rating = "Рейтинг: ${it.stars}",
                         distanceToCenter = "${it.distance}",
                         address = it.address,
-                        freeRooms = "Свободные номера: ${it.availableSuitesCount}"
+                        freeRooms = "${it.availableSuitesCount}"
                     )
                 } ?: Text("Отель не найден")
             }

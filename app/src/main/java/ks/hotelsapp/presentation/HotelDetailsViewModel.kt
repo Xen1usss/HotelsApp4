@@ -1,5 +1,6 @@
 package ks.hotelsapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ class HotelDetailsViewModel @Inject constructor( // ViewModel получает �
     val hotel: LiveData<Hotel?> = _hotel
 
     fun loadHotel(hotelId: Int) {
+        Log.d("loadHotel", hotelId.toString())
         viewModelScope.launch {
             val hotels = getHotelsUseCase()
             _hotel.postValue(hotels.find { it.id == hotelId })
