@@ -7,23 +7,30 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ks.hotelsapp.data.HotelsRepositoryImpl
 import ks.hotelsapp.domain.GetHotelsUseCase
 import ks.hotelsapp.domain.Hotel
 import javax.inject.Inject
 
 @HiltViewModel
 class HotelDetailsViewModel @Inject constructor( // ViewModel получает список отелей и находит нужный по id
-    private val getHotelsUseCase: GetHotelsUseCase
+    private val getHotelsUseCase: GetHotelsUseCase,
+    private val hotelsRepository: HotelsRepositoryImpl  // Репозиторий для получения изображений
 ) : ViewModel() {
 
     private val _hotel = MutableLiveData<Hotel?>()
     val hotel: LiveData<Hotel?> = _hotel
+
+    private val _hotelImage = MutableLiveData<String?>()
+    val hotelImage: LiveData<String?> = _hotelImage
 
     fun loadHotel(hotelId: Int) {
         Log.d("loadHotel", hotelId.toString())
         viewModelScope.launch {
             val hotels = getHotelsUseCase()
             _hotel.postValue(hotels.find { it.id == hotelId })
+            val imageUrl = hotelsRepository.getHotelImage(hotelId)  // Загружаем изображение
+            _hotelImage.postValue(imageUrl)
         }
     }
 }

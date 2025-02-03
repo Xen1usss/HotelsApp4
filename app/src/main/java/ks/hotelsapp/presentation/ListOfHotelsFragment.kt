@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import ks.hotelsapp.R
 import ks.hotelsapp.databinding.FragmentListOfHotelsBinding
 import ks.hotelsapp.domain.Hotel
 import ks.hotelsapp.domain.HotelsAdapter

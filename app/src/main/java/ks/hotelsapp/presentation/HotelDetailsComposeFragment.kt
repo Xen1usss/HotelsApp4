@@ -41,6 +41,7 @@ import ks.hotelsapp.R
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.fragment.app.viewModels
+import coil3.compose.rememberAsyncImagePainter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,13 +60,16 @@ class HotelDetailsComposeFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 val hotel = viewModel.hotel.observeAsState().value
+                val hotelImage = viewModel.hotelImage.observeAsState().value
+
                 hotel?.let {
                     ComposeScreen(
                         hotelName = it.name,
                         rating = "Рейтинг: ${it.stars}",
                         distanceToCenter = "${it.distance}",
                         address = it.address,
-                        freeRooms = "${it.availableSuitesCount}"
+                        freeRooms = "${it.availableSuitesCount}",
+                        imageUrl = hotelImage
                     )
                 } ?: Text("Отель не найден")
             }
@@ -80,20 +84,22 @@ fun ComposeScreen(
     distanceToCenter: String = "100 metres",
     address: String = "Санкт Петербург, Мурино",
     freeRooms: String = "1, 2, 23",
-    imageResId: Int = R.drawable.test
+    imageUrl: String? = null
+    //imageResId: Int = R.drawable.test
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         // изображение отеля
-        Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
-                .clip(CustomShape()),
-            painter = painterResource(imageResId),
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth
-        )
-
+        imageUrl?.let {
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                    .clip(CustomShape()),
+                painter = rememberAsyncImagePainter(it), // painterResource(imageResId),
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth
+            )
+        } ?: Text("Изображение не доступно")
         // контент карточки
         Column(
             modifier = Modifier
