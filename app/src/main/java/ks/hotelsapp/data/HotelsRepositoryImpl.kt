@@ -27,6 +27,7 @@ class HotelsRepositoryImpl @Inject constructor(
             null
         } catch (e: Exception) {
             Log.e("HotelsRepository", "Ошибка загрузки изображения", e)
+            // Обрабатываем ошибку 404 или другие ошибки и возвращаем null
             null
         }
     }

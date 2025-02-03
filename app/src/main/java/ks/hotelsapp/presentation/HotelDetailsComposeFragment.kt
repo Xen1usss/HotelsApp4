@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,14 +32,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
-import ks.hotelsapp.R
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.fragment.app.viewModels
@@ -61,6 +61,7 @@ class HotelDetailsComposeFragment : Fragment() {
             setContent {
                 val hotel = viewModel.hotel.observeAsState().value
                 val hotelImage = viewModel.hotelImage.observeAsState().value
+                val imageError = viewModel.hotelImageError.observeAsState().value ?: false
 
                 hotel?.let {
                     ComposeScreen(
@@ -69,7 +70,8 @@ class HotelDetailsComposeFragment : Fragment() {
                         distanceToCenter = "${it.distance}",
                         address = it.address,
                         freeRooms = "${it.availableSuitesCount}",
-                        imageUrl = hotelImage
+                        imageUrl = hotelImage,
+                        imageError = imageError  // Передаем флаг ошибки
                     )
                 } ?: Text("Отель не найден")
             }
@@ -84,22 +86,39 @@ fun ComposeScreen(
     distanceToCenter: String = "100 metres",
     address: String = "Санкт Петербург, Мурино",
     freeRooms: String = "1, 2, 23",
-    imageUrl: String? = null
-    //imageResId: Int = R.drawable.test
-) {
+    imageUrl: String? = null,
+    imageError: Boolean = false  // флаг ошибки 404 по идее
+)
+{
+    val imageError = remember { mutableStateOf(false) }
+
     Column(modifier = Modifier.fillMaxSize()) {
         // изображение отеля
-        imageUrl?.let {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
-                    .clip(CustomShape()),
-                painter = rememberAsyncImagePainter(it),
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth
-            )
-        } ?: Text("Изображение не доступно")
+        if (imageError.value) {
+            Text(
+                "Изображение не найдено",
+                color = Color.Red
+            )  // Показываем ошибку, если изображение не найдено
+        } else {
+            imageUrl?.let {
+                val painter = rememberAsyncImagePainter(
+                    model = it,
+                    onError = {
+                        // Если ошибка загрузки (например, 404), показываем сообщение
+                        imageError.value = true
+                    }
+                )
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                        .clip(CustomShape()),
+                    painter = rememberAsyncImagePainter(it),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth
+                )
+            } ?: Text("Изображение не доступно")
+        }
         // контент карточки
         Column(
             modifier = Modifier

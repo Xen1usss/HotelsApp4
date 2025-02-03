@@ -24,13 +24,20 @@ class HotelDetailsViewModel @Inject constructor( // ViewModel получает �
     private val _hotelImage = MutableLiveData<String?>()
     val hotelImage: LiveData<String?> = _hotelImage
 
+    private val _hotelImageError = MutableLiveData<Boolean>()
+    val hotelImageError: LiveData<Boolean> = _hotelImageError
+
     fun loadHotel(hotelId: Int) {
         Log.d("loadHotel", hotelId.toString())
         viewModelScope.launch {
             val hotels = getHotelsUseCase()
             _hotel.postValue(hotels.find { it.id == hotelId })
             val imageUrl = hotelsRepository.getHotelImage(hotelId)  // Загружаем изображение
-            Log.d("My sec test", "URL изображения: $imageUrl")
+            if (imageUrl == null) {
+                _hotelImageError.postValue(true)  // Устанавливаем флаг ошибки, если изображение не найдено
+            } else {
+                _hotelImageError.postValue(false)
+            }
             _hotelImage.postValue(imageUrl)
         }
     }
