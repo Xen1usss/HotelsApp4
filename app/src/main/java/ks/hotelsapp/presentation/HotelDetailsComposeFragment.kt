@@ -81,7 +81,7 @@ class HotelDetailsComposeFragment : Fragment() {
 
 @Composable
 fun ComposeScreen(
-    hotelName: String = "Хуево кукуево",
+    hotelName: String = "Какое-то название",
     rating: String = "Рейтинг: 3.4",
     distanceToCenter: String = "100 metres",
     address: String = "Санкт Петербург, Мурино",
@@ -193,10 +193,6 @@ fun ComposeScreen(
             )
         }
     }
-}
-
-fun String.capitalizeWords(): String {
-    return lowercase().split(" ").joinToString(" ") { it.replaceFirstChar { ch -> ch.uppercase() } }
 }
 
 @Preview(showBackground = true)
