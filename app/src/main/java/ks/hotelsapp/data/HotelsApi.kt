@@ -7,6 +7,6 @@ interface  HotelsApi {
     @GET("0777.json")
     suspend fun getHotels(): List<HotelDto>
 
-    @GET("N.json")  // Где N - это ID отеля
+    @GET("{id}.json")  // Используем {id} в пути
     suspend fun getHotelImage(@Path("id") id: Int): HotelImageDto
 }

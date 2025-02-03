@@ -20,7 +20,11 @@ class HotelsRepositoryImpl @Inject constructor(
     suspend fun getHotelImage(id: Int): String? {
         return try {
             val hotelImageDto = hotelsApi.getHotelImage(id)
-            hotelImageDto.image?.let { "https://github.com/iMofas/ios-android-test/raw/master/$it" }
+            hotelImageDto.image?.let {
+                return "https://github.com/iMofas/ios-android-test/raw/master/$it"
+            }
+            Log.d("HotelImage", "Изображение не найдено, поле image = null")
+            null
         } catch (e: Exception) {
             Log.e("HotelsRepository", "Ошибка загрузки изображения", e)
             null

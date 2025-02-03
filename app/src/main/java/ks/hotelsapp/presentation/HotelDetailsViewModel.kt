@@ -30,6 +30,7 @@ class HotelDetailsViewModel @Inject constructor( // ViewModel получает �
             val hotels = getHotelsUseCase()
             _hotel.postValue(hotels.find { it.id == hotelId })
             val imageUrl = hotelsRepository.getHotelImage(hotelId)  // Загружаем изображение
+            Log.d("My sec test", "URL изображения: $imageUrl")
             _hotelImage.postValue(imageUrl)
         }
     }

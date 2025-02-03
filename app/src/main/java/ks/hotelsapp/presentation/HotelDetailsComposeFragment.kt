@@ -95,7 +95,7 @@ fun ComposeScreen(
                     .fillMaxWidth()
                     .padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
                     .clip(CustomShape()),
-                painter = rememberAsyncImagePainter(it), // painterResource(imageResId),
+                painter = rememberAsyncImagePainter(it),
                 contentDescription = null,
                 contentScale = ContentScale.FillWidth
             )
