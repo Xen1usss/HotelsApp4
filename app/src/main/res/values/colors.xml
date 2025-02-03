@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="material_on_surface_variant">#BDBDBD</color>
+    <color name="stars">#FFB300</color>
 </resources>
