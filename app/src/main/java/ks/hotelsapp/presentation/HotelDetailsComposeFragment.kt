@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -59,21 +61,32 @@ class HotelDetailsComposeFragment : Fragment() {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                val hotel = viewModel.hotel.observeAsState().value
-                val hotelImage = viewModel.hotelImage.observeAsState().value
-                val imageError = viewModel.hotelImageError.observeAsState().value ?: false
 
-                hotel?.let {
-                    ComposeScreen(
-                        hotelName = it.name,
-                        rating = "Рейтинг: ${it.stars}",
-                        distanceToCenter = "${it.distance}",
-                        address = it.address,
-                        freeRooms = "${it.availableSuitesCount}",
-                        imageUrl = hotelImage,
-                        imageError = imageError  // Передаем флаг ошибки
-                    )
-                } ?: Text("Отель не найден")
+                // Состояние загрузки из ViewModel
+                val loading = viewModel.loading.observeAsState().value ?: false
+
+                Box(modifier = Modifier.fillMaxSize()) {
+                    if (loading) {
+                        // Если данные загружаются, показываем индикатор загрузки
+                        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                    } else {
+                        val hotel = viewModel.hotel.observeAsState().value
+                        val hotelImage = viewModel.hotelImage.observeAsState().value
+                        val imageError = viewModel.hotelImageError.observeAsState().value ?: false
+
+                        hotel?.let {
+                            ComposeScreen(
+                                hotelName = it.name,
+                                rating = "Рейтинг: ${it.stars}",
+                                distanceToCenter = "${it.distance}",
+                                address = it.address,
+                                freeRooms = "${it.availableSuitesCount}",
+                                imageUrl = hotelImage,
+                                imageError = imageError  // Передаем флаг ошибки
+                            )
+                        } ?: Text("Отель не найден")
+                    }
+                }
             }
         }
     }
@@ -88,8 +101,7 @@ fun ComposeScreen(
     freeRooms: String = "1, 2, 23",
     imageUrl: String? = null,
     imageError: Boolean = false  // флаг ошибки 404 по идее
-)
-{
+) {
     val imageError = remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
